@@ -1,0 +1,12 @@
+.abstract-bar {
+    position: absolute;
+    top: 10px;
+}
+
+.progress-bar {
+    @extend .abstract-bar;
+}
+
+.background-bar {
+    @extend .abstract-bar;
+}

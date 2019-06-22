@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CircleComponent } from './circle/circle.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { CircleComponent } from './progress-bar/circle/circle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CircleComponent
+    CircleComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

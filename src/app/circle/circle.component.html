@@ -1,0 +1,4 @@
+<svg [attr.height]="svgHeight" [attr.width]="svgWidth">
+  <path [attr.stroke]="color" [attr.stroke-width]="lineWidth" [attr.d]="arcDescription" fill="none" stroke-linecap="round"/>
+  <circle [attr.r]="radius-(lineWidth/2)" fill="white" [attr.cx]="xPositionOfCircleMask" [attr.cy]="yPositionOfCircleMask"/>
+</svg>

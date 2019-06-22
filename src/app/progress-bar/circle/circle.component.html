@@ -1,4 +1,10 @@
-<svg [attr.height]="svgHeight" [attr.width]="svgWidth">
-  <path [attr.stroke]="color" [attr.stroke-width]="lineWidth" [attr.d]="arcDescription" fill="none" stroke-linecap="round"/>
-  <circle [attr.r]="radius-(lineWidth/2)" fill="white" [attr.cx]="xPositionOfCircleMask" [attr.cy]="yPositionOfCircleMask"/>
-</svg>
+<div class="wrapper" (mouseenter)="onMouseEnter()">
+  <svg [attr.height]="svgHeight" [attr.width]="svgWidth">
+    <a (mouseleave)="onMouseLeave()">
+      <path [attr.stroke]="color" [attr.stroke-width]="lineWidth" [attr.d]="arcDescription" fill="none"
+        stroke-linecap="round" />
+      <circle [attr.r]="radius-(lineWidth/2)" fill="white" [attr.cx]="xPositionOfCircleMask"
+        [attr.cy]="yPositionOfCircleMask" />
+    </a>
+  </svg>
+</div>

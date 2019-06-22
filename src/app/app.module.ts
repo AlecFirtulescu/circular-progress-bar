@@ -24,7 +24,7 @@ import { CircleComponent } from './progress-bar/circle/circle.component';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

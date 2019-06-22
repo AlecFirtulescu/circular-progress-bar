@@ -1,13 +1,11 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-circle',
   templateUrl: './circle.component.html',
-  styleUrls: ['./circle.component.scss']
+  styleUrls: ['./circle.component.scss'],
 })
 export class CircleComponent {
-
-  constructor(private elRef: ElementRef) { }
 
   @Input() public color: string;
   @Input() public radius: number;
@@ -20,6 +18,8 @@ export class CircleComponent {
   public get svgHeight(): number {
     return this.radius * 2 + this.lineWidth;
   }
+  @Output('onMouseEnter') mouseEnter: EventEmitter<any> = new EventEmitter();
+  @Output('onMouseLeave') mouseLeave: EventEmitter<any> = new EventEmitter();
 
   public get xPositionOfCircleMask(): number {
     return this.radius + (this.lineWidth / 2)
@@ -36,21 +36,29 @@ export class CircleComponent {
     let start = this.polarToCartesian(x, y, this.radius, this.endAngle);
     let end = this.polarToCartesian(x, y, this.radius, this.startAngle);
 
-    var arcSweep = this.endAngle - this.startAngle <= 180 ? '0' : '1';
+    const arcSweep = this.endAngle - this.startAngle <= 180 ? '0' : '1';
 
-    var d = [
-        'M', start.x, start.y, 
-        'A', this.radius, this.radius, this.startAngle, arcSweep, this.startAngle, end.x, end.y,
-        'L', x,y,
-        'L', start.x, start.y
+    const d = [
+      'M', start.x, start.y,
+      'A', this.radius, this.radius, this.startAngle, arcSweep, this.startAngle, end.x, end.y,
+      'L', x, y,
+      'L', start.x, start.y
     ].join(" ");
-    
-    return d;  
+
+    return d;
+  }
+
+  public onMouseEnter() {
+    this.mouseEnter.emit(null);
+  }
+
+  public onMouseLeave() {
+    this.mouseLeave.emit(null);
   }
 
   private polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-    let angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
-  
+    let angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+
     return {
       x: centerX + (radius * Math.cos(angleInRadians)),
       y: centerY + (radius * Math.sin(angleInRadians))

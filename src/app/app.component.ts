@@ -43,4 +43,12 @@ export class AppComponent {
     return `${h}:${m}`
   }
 
+  public onProgressBarEnter() {
+    console.log('app');
+  }
+
+  public onProgressBarLeave() {
+    console.log('app');
+  }
+
 }

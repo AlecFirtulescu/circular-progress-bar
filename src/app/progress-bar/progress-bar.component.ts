@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-progress-bar',
@@ -7,6 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ProgressBarComponent {
 
+  public backgroundBarColor: string;
+  public progressBarColor: string;
   private _status: ProgressBarStatus;
   @Input() public get status(): ProgressBarStatus {
     return this._status;
@@ -18,7 +20,19 @@ export class ProgressBarComponent {
   @Input() public progress: number;
   @Input() public lineWidth: number;
 
+  constructor() {
+    this.backgroundBarColor = 'black';
+    this.progressBarColor = 'blue';
+  }
+
   public get progressInDegrees() {
     return this.progress * 359.99 / 100;
+  }
+
+  public onBackgroundCircleMouseEnter() {
+    this.progressBarColor = 'red';
+  }
+
+  public onBackgroundCircleMouseLeave() {
   }
 }

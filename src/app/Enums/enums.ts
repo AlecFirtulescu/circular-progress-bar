@@ -1,3 +1,4 @@
-enum ProgressBarStatus {
-    
+export enum ProgressBarStatus {
+    Normal = 1,
+    Exceeded
 }

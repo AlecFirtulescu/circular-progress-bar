@@ -1,4 +1,5 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProgressBarStatus } from '../enums/enums';
 
 @Component({
   selector: 'app-progress-bar',
@@ -15,17 +16,28 @@ export class ProgressBarComponent {
   }
   public set status(newValue: ProgressBarStatus) {
     this._status = newValue
+    if (newValue === ProgressBarStatus.Exceeded) {
+      this.backgroundBarColor = '#2E87DB';
+      this.progressBarColor = '#C51F5F';
+    } else if (newValue === ProgressBarStatus.Normal) {
+      this.backgroundBarColor = '#E1E1E1';
+      this.progressBarColor = '#2E87DB';
+    }
   }
 
   @Input() public progress: number;
   @Input() public lineWidth: number;
 
   constructor() {
-    this.backgroundBarColor = '#F5F5F5';
+    this.backgroundBarColor = '#E1E1E1';
     this.progressBarColor = '#2E87DB';
   }
 
   public get progressInDegrees() {
+    if (this.progress >= 100) {
+      this.status = ProgressBarStatus.Exceeded;
+      this.progress = this.progress % 100;
+    }
     return this.progress * 359.99 / 100;
   }
 

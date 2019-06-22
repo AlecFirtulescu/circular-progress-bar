@@ -1,12 +1,13 @@
 <div class="wrapper">
-  <app-progress-bar [progress]="40" [lineWidth]="15">
+  <app-progress-bar [progress]="progress" [lineWidth]="15"
+    [status]="this.exceded ? progressBarStatus.Exceeded:progressBarStatus.Normal">
     <div class="fields-wrapper">
       <div class="labels-wrapper">
         <label class="label margin-top-20" for="estimate"> Estimate </label>
         <br>
         <label class="label" for="completed"> Completed </label>
         <br>
-        <label class="label" for="remainingTime"> Remaining </label>
+        <label class="label" [ngClass]="exceded ? 'exceded' : ''" for="remainingTime"> Remaining </label>
       </div>
       <div class="input-fields">
         <mat-form-field>
@@ -19,7 +20,8 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput name="remainingTime" type="time" [(ngModel)]="remainingTime" disabled />
+          <input matInput [ngClass]="exceded ? 'exceded' : ''" name="remainingTime" type="time"
+            [(ngModel)]="remainingTime" disabled />
         </mat-form-field>
       </div>
     </div>

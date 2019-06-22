@@ -1,1 +1,17 @@
-<app-progress-bar [progress]="40" [lineWidth]="20">
+<div class="wrapper">
+  <app-progress-bar [progress]="40" [lineWidth]="20"></app-progress-bar>
+  <div class="input-fields">
+    <mat-form-field>
+      <input type="time" [(ngModel)]="estimate" (ngModelChange)="updateRemainingTime()" matInput placeholder="Estimate">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input type="time" [(ngModel)]="completed" (ngModelChange)="updateRemainingTime()" matInput
+        placeholder="Completed">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input type="time" [(ngModel)]="remainingTime" matInput placeholder="Remaining time" disabled>
+    </mat-form-field>
+  </div>
+</div>

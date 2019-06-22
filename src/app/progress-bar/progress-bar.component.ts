@@ -21,8 +21,8 @@ export class ProgressBarComponent {
   @Input() public lineWidth: number;
 
   constructor() {
-    this.backgroundBarColor = 'black';
-    this.progressBarColor = 'blue';
+    this.backgroundBarColor = '#F5F5F5';
+    this.progressBarColor = '#2E87DB';
   }
 
   public get progressInDegrees() {

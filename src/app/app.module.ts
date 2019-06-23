@@ -4,6 +4,7 @@ import {
   MatFormFieldModule,
   MatInputModule
 } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
@@ -25,6 +26,7 @@ import { CircleComponent } from './progress-bar/circle/circle.component';
     MatInputModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

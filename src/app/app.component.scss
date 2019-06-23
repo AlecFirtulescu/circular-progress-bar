@@ -2,6 +2,7 @@
 
 .input-fields {
     float: right;
+    color:$progress-color;
 }
 
 .labels-wrapper {
@@ -19,4 +20,17 @@
 
 .exceded {
     color: $exceeded-color;
+}
+
+.contextual-menu-button {
+    border-radius: 50%;
+    background-color: $progress-color;
+    color: white;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    left: 305px;
+    top: 50px;
+    z-index: 1000;
+    outline: none;
 }

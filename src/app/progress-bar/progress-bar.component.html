@@ -1,10 +1,10 @@
 <div class="background-bar">
-  <app-circle (mouseEnter)="onBackgroundCircleMouseEnter()" (mouseLeave)="onBackgroundCircleMouseLeave()" [radius]="300"
-    [color]="backgroundBarColor" [lineWidth]="lineWidth" [endAngle]="359.9">
+  <app-circle [radius]="300" [color]="backgroundBarColor" [lineWidth]="lineWidth" [endAngle]="359.9">
   </app-circle>
 </div>
 <div class="progress-bar">
-  <app-circle [radius]="300" [color]="progressBarColor" [lineWidth]="lineWidth" [endAngle]="progressInDegrees">
+  <app-circle #progressBar (mouseEnter)="onBackgroundCircleMouseEnter()" (mouseLeave)="onBackgroundCircleMouseLeave()"
+    [radius]="300" [color]="progressBarColor" [lineWidth]="lineWidth" [endAngle]="progressInDegrees">
   </app-circle>
   <div class="center-x-y">
     <ng-content> </ng-content>

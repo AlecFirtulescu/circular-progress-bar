@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-circle',
@@ -8,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class CircleComponent {
 
+  private hovered: boolean;
   @Input() public color: string;
   @Input() public radius: number;
   @Input() public lineWidth: number;
@@ -34,6 +34,10 @@ export class CircleComponent {
     let x = this.radius + this.lineWidth / 2;
     let y = this.radius + this.lineWidth / 2;
 
+    if (!this.endAngle) {
+      return " ";
+    }
+
     let start = this.polarToCartesian(x, y, this.radius, this.endAngle);
     let end = this.polarToCartesian(x, y, this.radius, this.startAngle);
 
@@ -49,11 +53,19 @@ export class CircleComponent {
     return d;
   }
 
+  public onMouseOver() {
+    if (this.hovered) {
+      this.onMouseLeave();
+    }
+  }
+
   public onMouseEnter() {
+    this.hovered = true;
     this.mouseEnter.emit();
   }
 
   public onMouseLeave() {
+    this.hovered = false;
     this.mouseLeave.emit();
   }
 

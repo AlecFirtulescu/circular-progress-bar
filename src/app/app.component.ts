@@ -13,8 +13,10 @@ export class AppComponent {
   public completed: string;
 
   public remainingTime: string;
-  public timerExceded: boolean;
   public progress: number;
+
+  public timerExceded: boolean;
+  public progressBarHovered: boolean;
 
   private interval;
   private estimateDate: Date;
@@ -23,6 +25,7 @@ export class AppComponent {
 
   constructor(private changeDetector: ChangeDetectorRef) {
     this.progressBarStatus = ProgressBarStatus;
+    this.progressBarHovered = false;
   }
 
   public updateRemainingTime() {
@@ -90,11 +93,15 @@ export class AppComponent {
   }
 
   public onProgressBarMouseEnter() {
-    console.log('app');
+    this.progressBarHovered = true;
   }
 
   public onProgressBarMouseLeave() {
-    console.log('app');
+    this.progressBarHovered = false;
+  }
+
+  public onAdjustEstimate() {
+    alert("You just adjusted the estimate");
   }
 
 }

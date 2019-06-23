@@ -1,5 +1,10 @@
 <div class="wrapper">
-  <app-progress-bar (mouseEnter)="onProgressBarMouseEnter()" [progress]="progress" [lineWidth]="15"
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+  <app-progress-bar (mouseEnter)="onProgressBarMouseEnter()" (mouseLeave)="onProgressBarMouseLeave()"
+    [progress]="progress" [lineWidth]="15"
     [status]="this.timerExceded ? progressBarStatus.Exceeded:progressBarStatus.Normal">
     <div class="fields-wrapper">
       <div class="labels-wrapper">
@@ -27,4 +32,8 @@
       </div>
     </div>
   </app-progress-bar>
+  <button *ngIf="progressBarHovered" mat-button class="contextual-menu-button" [matMenuTriggerFor]="menu">...</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onAdjustEstimate()">Adjust Estimate</button>
+  </mat-menu>
 </div>

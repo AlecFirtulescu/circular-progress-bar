@@ -44,10 +44,12 @@ export class ProgressBarComponent {
   }
 
   public onBackgroundCircleMouseEnter() {
+    this.backgroundBarColor = '#D3E3F2'
     this.mouseEnter.emit();
   }
 
   public onBackgroundCircleMouseLeave() {
-
+    this.backgroundBarColor = '#E1E1E1';
+    this.mouseLeave.emit();
   }
 }

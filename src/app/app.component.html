@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-progress-bar [progress]="progress" [lineWidth]="15"
+  <app-progress-bar (mouseEnter)="onProgressBarMouseEnter()" [progress]="progress" [lineWidth]="15"
     [status]="this.timerExceded ? progressBarStatus.Exceeded:progressBarStatus.Normal">
     <div class="fields-wrapper">
       <div class="labels-wrapper">

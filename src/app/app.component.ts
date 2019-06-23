@@ -89,11 +89,11 @@ export class AppComponent {
     return `${h}:${m}`
   }
 
-  public onProgressBarEnter() {
+  public onProgressBarMouseEnter() {
     console.log('app');
   }
 
-  public onProgressBarLeave() {
+  public onProgressBarMouseLeave() {
     console.log('app');
   }
 

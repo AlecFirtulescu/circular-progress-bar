@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-circle',
@@ -18,8 +19,8 @@ export class CircleComponent {
   public get svgHeight(): number {
     return this.radius * 2 + this.lineWidth;
   }
-  @Output('onMouseEnter') mouseEnter: EventEmitter<any> = new EventEmitter();
-  @Output('onMouseLeave') mouseLeave: EventEmitter<any> = new EventEmitter();
+  @Output() mouseEnter: EventEmitter<any> = new EventEmitter();
+  @Output() mouseLeave: EventEmitter<any> = new EventEmitter();
 
   public get xPositionOfCircleMask(): number {
     return this.radius + (this.lineWidth / 2)
@@ -49,11 +50,11 @@ export class CircleComponent {
   }
 
   public onMouseEnter() {
-    this.mouseEnter.emit(null);
+    this.mouseEnter.emit();
   }
 
   public onMouseLeave() {
-    this.mouseLeave.emit(null);
+    this.mouseLeave.emit();
   }
 
   private polarToCartesian(centerX, centerY, radius, angleInDegrees) {

@@ -1,5 +1,5 @@
 <div class="background-bar">
-  <app-circle #backgroundCircle (onMouseEnter)="onBackgroundCircleMouseEnter($event)" [radius]="300"
+  <app-circle (mouseEnter)="onBackgroundCircleMouseEnter()" (mouseLeave)="onBackgroundCircleMouseLeave()" [radius]="300"
     [color]="backgroundBarColor" [lineWidth]="lineWidth" [endAngle]="359.9">
   </app-circle>
 </div>

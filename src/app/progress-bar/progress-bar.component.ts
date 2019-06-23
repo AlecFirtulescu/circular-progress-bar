@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProgressBarStatus } from '../enums/enums';
 
 @Component({
@@ -27,6 +27,8 @@ export class ProgressBarComponent {
 
   @Input() public progress: number;
   @Input() public lineWidth: number;
+  @Output() mouseEnter: EventEmitter<any> = new EventEmitter();
+  @Output() mouseLeave: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.backgroundBarColor = '#E1E1E1';
@@ -42,9 +44,10 @@ export class ProgressBarComponent {
   }
 
   public onBackgroundCircleMouseEnter() {
-    this.progressBarColor = 'red';
+    this.mouseEnter.emit();
   }
 
   public onBackgroundCircleMouseLeave() {
+
   }
 }

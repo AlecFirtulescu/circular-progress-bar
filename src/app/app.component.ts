@@ -19,6 +19,7 @@ export class AppComponent {
   private interval;
   private estimateDate: Date;
   private completedDate: Date;
+  private remainingDate: Date;
 
   constructor(private changeDetector: ChangeDetectorRef) {
     this.progressBarStatus = ProgressBarStatus;
@@ -33,7 +34,8 @@ export class AppComponent {
     this.completedDate = this.timeStringToDate(this.completed);
 
     const diffDate = this.estimateDate.getTime() - this.completedDate.getTime();
-    this.remainingTime = this.dateToTimeString(new Date(Math.abs(diffDate)));
+    this.remainingDate = new Date(Math.abs(diffDate));
+    this.remainingTime = this.dateToTimeString(this.remainingDate);
 
     if (this.completedDate > this.estimateDate) {
       this.timerExceded = false;
@@ -55,12 +57,14 @@ export class AppComponent {
     this.progress = 0;
     const timerInterval = 1000;
     this.interval = setInterval(() => {
-      let diffDate = this.timeStringToDate(this.remainingTime).getTime() - timerInterval;
+      let diffDate = this.remainingDate.getTime() - timerInterval;
+      this.remainingDate = new Date(diffDate);
       if (diffDate <= 0) {
         this.timerExceded = true;
       }
+
       this.updateProgress(timerInterval);
-      this.remainingTime = this.dateToTimeString(new Date(diffDate));
+      this.remainingTime = this.dateToTimeString(this.remainingDate);
     }, timerInterval)
   }
 
@@ -69,7 +73,7 @@ export class AppComponent {
   }
 
   private timeStringToDate(timeString: string): Date {
-    const date = new Date('1970-01-01T' + timeString + '+0000')
+    const date = new Date('1970-01-01T' + timeString + 'Z')
     return date;
   }
 

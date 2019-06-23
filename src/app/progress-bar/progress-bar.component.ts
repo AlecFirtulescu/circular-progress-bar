@@ -44,12 +44,18 @@ export class ProgressBarComponent {
   }
 
   public onBackgroundCircleMouseEnter() {
-    this.backgroundBarColor = '#D3E3F2'
+    if (this.status === ProgressBarStatus.Normal) {
+      this.backgroundBarColor = '#D3E3F2'
+    }
     this.mouseEnter.emit();
   }
 
   public onBackgroundCircleMouseLeave() {
-    this.backgroundBarColor = '#E1E1E1';
+    if (this.status === ProgressBarStatus.Normal) {
+      this.backgroundBarColor = '#E1E1E1';
+    } else {
+      this.backgroundBarColor = '#2E87DB';
+    }
     this.mouseLeave.emit();
   }
 }

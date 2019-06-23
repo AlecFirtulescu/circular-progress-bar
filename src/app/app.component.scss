@@ -34,3 +34,7 @@
     z-index: 1000;
     outline: none;
 }
+
+::ng-deep .mat-menu-panel {
+    margin-left: calc(-50% + 15px)
+}

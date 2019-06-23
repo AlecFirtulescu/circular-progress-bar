@@ -11,21 +11,21 @@ export class AppComponent {
 
   public estimate: string;
   public completed: string;
-
   public remainingTime: string;
+
   public progress: number;
 
   public timerExceded: boolean;
   public progressBarHovered: boolean;
 
-  private interval;
-  private estimateDate: Date;
-  private completedDate: Date;
   private remainingDate: Date;
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor() {
     this.progressBarStatus = ProgressBarStatus;
     this.progressBarHovered = false;
+    this.estimate = '00:00';
+    this.completed = '00:00';
+    this.remainingTime = '00:00';
   }
 
   public updateRemainingTime() {
@@ -33,46 +33,28 @@ export class AppComponent {
       return;
     }
 
-    this.estimateDate = this.timeStringToDate(this.estimate);
-    this.completedDate = this.timeStringToDate(this.completed);
+    const estimateDate = this.timeStringToDate(this.estimate);
+    const completedDate = this.timeStringToDate(this.completed);
 
-    const diffDate = this.estimateDate.getTime() - this.completedDate.getTime();
+    const diffDate = estimateDate.getTime() - completedDate.getTime();
     this.remainingDate = new Date(Math.abs(diffDate));
     this.remainingTime = this.dateToTimeString(this.remainingDate);
 
-    if (this.completedDate > this.estimateDate) {
+    if (completedDate < estimateDate) {
       this.timerExceded = false;
-      this.initTimer();
     } else {
       this.timerExceded = true;
     }
-    this.changeDetector.markForCheck();
+    this.initProgress();
   }
 
-  private updateProgress(incrementTimeInterval: number) {
-    const diffDate = this.completedDate.getTime() - this.estimateDate.getTime();
-    const incrementRatio = (incrementTimeInterval * 100) / diffDate;
-    this.progress += incrementRatio;
-  }
+  private initProgress() {
+    const estimateDate = this.timeStringToDate(this.estimate);
+    const completedDate = this.timeStringToDate(this.completed);
 
-  private initTimer() {
-    this.stopTimer();
-    this.progress = 0;
-    const timerInterval = 1000;
-    this.interval = setInterval(() => {
-      let diffDate = this.remainingDate.getTime() - timerInterval;
-      this.remainingDate = new Date(diffDate);
-      if (diffDate <= 0) {
-        this.timerExceded = true;
-      }
+    this.progress = completedDate.getTime() * 100 / estimateDate.getTime();
 
-      this.updateProgress(timerInterval);
-      this.remainingTime = this.dateToTimeString(this.remainingDate);
-    }, timerInterval)
-  }
 
-  private stopTimer() {
-    clearInterval(this.interval);
   }
 
   private timeStringToDate(timeString: string): Date {
